@@ -405,6 +405,10 @@ describe Rack::Utils do
     helper.call(%w(foo bar baz identity), [["*", 0], ["identity", 0.1]]).should.equal("identity")
   end
 
+  it "return rfc2616 format from rfc2616 helper" do
+    Rack::Utils.rfc2616(Time.at(0).gmtime).must_equal "Thu, 01 Jan 1970 00:00:00 GMT"
+  end
+
   should "return the bytesize of String" do
     Rack::Utils.bytesize("FOO\xE2\x82\xAC").should.equal 6
   end
